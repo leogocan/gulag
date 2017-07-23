@@ -1,0 +1,43 @@
+Svaka klasa ima samo članske varijable koje su ustvari parametri lika - duljine stranica/radijus, a ostalo se računa pozivima metoda, i tako i treba biti.
+
+Ali - ono što mi se ne sviđa jest da si hardkodirao vrijednosti parametara likova u definiciji klase. To se ne radi tako - kako bi sad korisnik tvog programa trebao promijenit vrijednosti tih parametara ako mu ne odgovaraju?
+
+Upravo zato postoje konstruktori - za inicijalizaciju vrijednosti pri stvaranju novog objekta neke klase. Što se naknadne promjene vrijednosti tiče, generalno bi se trebali koristiti getteri i setteri. Sutra objasnim zašto.
+
+Klasa bi stoga trebala izgledat (za pravokutnik, a analogno i za ostale) ovako nekako:
+	
+	public class Pravokutnik {
+		private double a;
+		private double b;
+
+		// konstruktor, u kojem se inicijaliziraju vrijednosti prilikom stvaranja objekta:
+		public Pravokutnik(double a, double b){
+			this.a = a; // postavi vrijednost članske varijable "a" ovog ("this") objekta
+			this.b = b;
+		}
+
+		// slijede getteri i setteri
+		public double getA(){
+			return this.a;
+		}
+
+		public void setA(double a){
+			this.a = a;
+		}
+		// analogno za b
+
+		// konacno, metode klase:
+		
+		public double opseg(){
+			return 2 * this.a + 2 * this.b;
+		}
+		public double povrsina(){
+			return this.a * this.b;
+		}
+}
+
+
+Par stvari za istaknut:
+1) bolje bi bilo da metode vraćaju vrijednost, koja bi se potom u mainu ispisala. Mislim, ako radiš neki ozbiljniji program s trokutima, vjerojatno će ti negdje u logici programa bit korisno dobit tu vrijednost da možeš dalje radit s njom, a ne ispisat ju korisniku i potom pješke izračunat ili nešto.
+
+2) u Trokutu - čemu ovo sa "strC"? Nigdje ne piše da je trokut pravokutni, a samo nepotrebno kompliciraš s tim izračunom :D
